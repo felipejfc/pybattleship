@@ -1,5 +1,0 @@
-1ª Semana 		Familiarização com o PyGame. 
-1ª Semana e 2ª Semana 	Criação da Lógica do Jogo. 
-3ª Semana 		Desenvolver o Ambiente Gráfico. 
-4ª Semana 		Ajustes no Ambiente Gráfico e Inicio da implementação dos modos MultiPlayer. 
-5ª Semana 		Concluir pendências e realizar os ajustes finais para a entrega. 
