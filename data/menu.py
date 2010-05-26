@@ -11,23 +11,21 @@ class Menu(object):
         ng_button = pygame.image.load(filepath("newgamebutton.png")) #Carrega NB
         ng_button_vermelho = pygame.image.load(filepath("newgamebutton_s.png")) #Carrega NB_VERMELHO
         clickable[ng_button] = (21,420) #poe a posicao do elemento no dict
-        print clickable.values()
-        
+ 
         while True:              #Loop do menu, que pega os eventos.
-            no_botao = False
             for evento in pygame.event.get():
-                print evento
-                if evento.type == pygame.QUIT:
-                    exit()
-                if evento.type == MOUSEMOTION:
-                    for key,value in clickable.items():
-                        if checkclick(value,key.get_size(),evento.pos):
-                            no_botao = True       
-                if evento.type == MOUSEBUTTONDOWN: #Verifica onde o usurio clicou.
-                    if evento.button == 1:
-                        for key,value in clickable.items():
-                            if checkclick(value,key.get_size(),evento.pos) and key==ng_button:
-                                print "Novo jogo"
+				no_botao = False
+				if evento.type == pygame.QUIT:
+					exit()
+				if evento.type == MOUSEMOTION:
+					for key,value in clickable.items():
+						if checkclick(value,key.get_size(),evento.pos):
+							no_botao = True     
+				if evento.type == MOUSEBUTTONDOWN: #Verifica onde o usurio clicou.
+					if evento.button == 1:
+						for key,value in clickable.items():
+							if checkclick(value,key.get_size(),evento.pos) and key==ng_button:
+								print "Novo jogo"
                                 
             if no_botao == True:
                  self.screen.blit(ng_button_vermelho, (21, 420))

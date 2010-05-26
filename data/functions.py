@@ -14,5 +14,3 @@ def checkclick(posobj,sizeobj,posclick):
 		if posclick[1]>=posobj[1] and posclick[1] <= posobj[1]+sizeobj[1]:
 			return True
 	return False
-		
-#image.get_size
