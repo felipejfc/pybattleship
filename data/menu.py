@@ -3,37 +3,82 @@ from pygame.locals import *
 
 from functions import *  #importa as funcoes do functions.py
 
+clickable_m2 = {}
+
 class Menu(object):
 	
 	def menu2(self,screen):
-		clickable = {} #cria um dicionario de elementos clicaveis na tela.
+		
 		self.screen = screen  #recebe screen do main.py
-		menu2img = pygame.image.load(filepath("menu2.png")) #Carrega o Menu2
-		background = pygame.image.load(filepath("menu.jpg")) #Carrega BG
+		
+		#background = pygame.image.load(filepath("menu.jpg")) #Carrega BG
 		#self.screen.blit(background, (0, 0)) #Desenha o BG
-		#pygame.display.flip() #Atualiza a Tela
+		
+		menu2img = pygame.image.load(filepath("menu2.png")) #Carrega o Menu2
+		
+		menu2bt1   = pygame.image.load(filepath("menu2_button1.png")) #Carrega o botao 1
+		menu2bt1_r = pygame.image.load(filepath("menu2_button1_r.png")) #Carrega o botao 1
+		menu2bt2   = pygame.image.load(filepath("menu2_button2.png")) #Carrega o botao 1
+		menu2bt2_r = pygame.image.load(filepath("menu2_button2_r.png")) #Carrega o botao 1
+		menu2bt3   = pygame.image.load(filepath("menu2_button3.png")) #Carrega o botao 1
+		menu2bt3_r = pygame.image.load(filepath("menu2_button3_r.png")) #Carrega o botao 1
+		
+		
+		clickable_m2[menu2bt1] = (270,230)
+		clickable_m2[menu2bt2] = (275,270)
+		clickable_m2[menu2bt3] = (293,310)
+		
+		bt1 = False
+		bt2 = False
+		bt3 = False
 		while True:              #Loop do menu, que pega os eventos.
 			for evento in pygame.event.get():
+				bt1 = False
+				bt2 = False
+				bt3 = False
 				if evento.type == pygame.QUIT:
 					exit()
-				self.screen.blit(menu2img, (222, 140))
-				pygame.display.flip()
-					
+				if evento.type == MOUSEMOTION: #Verifica onde o ponteiro do mouse anda...
+					for key,value in clickable_m2.items():
+						if checkclick(value,key.get_size(),evento.pos) and key==menu2bt1:
+							bt1 = True
+						if checkclick(value,key.get_size(),evento.pos) and key==menu2bt2:
+							bt2 = True
+						if checkclick(value,key.get_size(),evento.pos) and key==menu2bt3:
+							bt3 = True
+
+			self.screen.blit(menu2img, (222, 140))
+			if bt1:
+				self.screen.blit(menu2bt1_r, (270, 230))
+			else:
+				self.screen.blit(menu2bt1, (270, 230))
+			if bt2:
+				self.screen.blit(menu2bt2_r, (275, 270))
+			else:
+				self.screen.blit(menu2bt2, (275, 270))
+			if bt3:
+				self.screen.blit(menu2bt3_r, (293, 310))
+			else:
+				self.screen.blit(menu2bt3, (293, 310))
+			pygame.display.flip()
+								
 	def __init__(self, screen):
 		clickable = {} #cria um dicionario de elementos clicaveis na tela.
 		self.screen = screen  #recebe screen do main.py
 		background = pygame.image.load(filepath("menu.jpg")) #Carrega BG
+		
 		ng_button = pygame.image.load(filepath("newgamebutton.png")) #Carrega NB
 		ng_button_vermelho = pygame.image.load(filepath("newgamebutton_s.png")) #Carrega NB_VERMELHO
 		sobre_button = pygame.image.load(filepath("sobre.png")) #Carrega o botao sobre
 		sobre_button_vermelho = pygame.image.load(filepath("sobre_s.png")) #Carrega o botao sobre vermelho
 		saida_button = pygame.image.load(filepath("sair.png")) #Carrega o botao sair 
 		saida_button_vermelho = pygame.image.load(filepath("sair_s.png")) #Carrega  o botao sair vermehlo
+		
 		clickable[ng_button] = (21,420) #poe a posicao do elemento no dict
 		clickable[sobre_button] = (295,420) #poe a posicao do botao sobre no dict
 		clickable[saida_button] = (540,420)  #poe a posicao do botao saida no dict
-		pygame.mixer.music.load(musicapath("menu.ogg"))  # Carrega a musica do menu
-		pygame.mixer.music.play(-1) # TOCA A MUSICA DO MENU SEM PARAR
+		#pygame.mixer.music.load(musicapath("menu.ogg"))  # Carrega a musica do menu
+		#pygame.mixer.music.play(-1) # TOCA A MUSICA DO MENU SEM PARAR
 		
 		while True:              #Loop do menu, que pega os eventos.
 			for evento in pygame.event.get():
