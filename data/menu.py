@@ -1,66 +1,9 @@
 import pygame, sys, os
 from pygame.locals import *
-
+import menu2
 from functions import *  #importa as funcoes do functions.py
 
-clickable_m2 = {}
-
 class Menu(object):
-	
-	def menu2(self,screen):
-		
-		self.screen = screen  #recebe screen do main.py
-		
-		#background = pygame.image.load(filepath("menu.jpg")) #Carrega BG
-		#self.screen.blit(background, (0, 0)) #Desenha o BG
-		
-		menu2img = pygame.image.load(filepath("menu2.png")) #Carrega o Menu2
-		
-		menu2bt1   = pygame.image.load(filepath("menu2_button1.png")) #Carrega o botao 1
-		menu2bt1_r = pygame.image.load(filepath("menu2_button1_r.png")) #Carrega o botao 1
-		menu2bt2   = pygame.image.load(filepath("menu2_button2.png")) #Carrega o botao 1
-		menu2bt2_r = pygame.image.load(filepath("menu2_button2_r.png")) #Carrega o botao 1
-		menu2bt3   = pygame.image.load(filepath("menu2_button3.png")) #Carrega o botao 1
-		menu2bt3_r = pygame.image.load(filepath("menu2_button3_r.png")) #Carrega o botao 1
-		
-		
-		clickable_m2[menu2bt1] = (270,230)
-		clickable_m2[menu2bt2] = (275,270)
-		clickable_m2[menu2bt3] = (293,310)
-		
-		bt1 = False
-		bt2 = False
-		bt3 = False
-		while True:              #Loop do menu, que pega os eventos.
-			for evento in pygame.event.get():
-				bt1 = False
-				bt2 = False
-				bt3 = False
-				if evento.type == pygame.QUIT:
-					exit()
-				if evento.type == MOUSEMOTION: #Verifica onde o ponteiro do mouse anda...
-					for key,value in clickable_m2.items():
-						if checkclick(value,key.get_size(),evento.pos) and key==menu2bt1:
-							bt1 = True
-						if checkclick(value,key.get_size(),evento.pos) and key==menu2bt2:
-							bt2 = True
-						if checkclick(value,key.get_size(),evento.pos) and key==menu2bt3:
-							bt3 = True
-
-			self.screen.blit(menu2img, (222, 140))
-			if bt1:
-				self.screen.blit(menu2bt1_r, (270, 230))
-			else:
-				self.screen.blit(menu2bt1, (270, 230))
-			if bt2:
-				self.screen.blit(menu2bt2_r, (275, 270))
-			else:
-				self.screen.blit(menu2bt2, (275, 270))
-			if bt3:
-				self.screen.blit(menu2bt3_r, (293, 310))
-			else:
-				self.screen.blit(menu2bt3, (293, 310))
-			pygame.display.flip()
 								
 	def __init__(self, screen):
 		clickable = {} #cria um dicionario de elementos clicaveis na tela.
@@ -79,38 +22,36 @@ class Menu(object):
 		clickable[saida_button] = (540,420)  #poe a posicao do botao saida no dict
 		#pygame.mixer.music.load(musicapath("menu.ogg"))  # Carrega a musica do menu
 		#pygame.mixer.music.play(-1) # TOCA A MUSICA DO MENU SEM PARAR
-		
+		menu = 1
+		no_botaong = False
+		no_botaosobre = False
+		no_botaosaida = False
 		while True:              #Loop do menu, que pega os eventos.
 			for evento in pygame.event.get():
-				menu = 1
 				no_botaong = False
 				no_botaosobre = False
 				no_botaosaida = False
 				if evento.type == pygame.QUIT:
 					exit()
-				if evento.type == MOUSEMOTION: #Verifica onde o ponteiro do mouse anda...
+			
+				if evento.type == MOUSEMOTION: #Verifica onde o ponteiro do mouse anda... para destacar os botoes.
 					for key,value in clickable.items():
 						if checkclick(value,key.get_size(),evento.pos) and key==ng_button:
 							no_botaong = True  
-				if evento.type == MOUSEMOTION: #Verifica onde o ponteiro do mouse anda...
-					for key,value in clickable.items():
 						if checkclick(value,key.get_size(),evento.pos) and key==sobre_button:
 							no_botaosobre = True 
-				if evento.type == MOUSEMOTION: #Verifica onde o ponteiro do mouse anda...
-					for key,value in clickable.items():
 						if checkclick(value,key.get_size(),evento.pos) and key==saida_button:
 							no_botaosaida = True   
+							
 				if evento.type == MOUSEBUTTONDOWN: #Verifica onde o usurio clicou.
 					if evento.button == 1:
 						for key,value in clickable.items():
 							if checkclick(value,key.get_size(),evento.pos) and key==ng_button:
-								Menu.menu2(self,screen)
+								menu2.Menu2(screen)
 								menu = 2
-				if evento.type == MOUSEBUTTONDOWN: #Verifica onde o usurio clicou.
-					if evento.button == 1:
-						for key,value in clickable.items():
 							if checkclick(value,key.get_size(),evento.pos) and key==saida_button:
 								exit() # SAIR DO JOGO SE CLICAR NO BOTAO SAIDA
+								
 			if menu == 2: # Sair do loop se clicar no botao novo jogo
 				break
 			if no_botaong == True:

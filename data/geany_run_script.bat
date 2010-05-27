@@ -1,4 +1,4 @@
-C:\Python26\python.exe "menu.py"
+C:\Python26\python.exe "main.py"
 
 pause
 del "%0"
