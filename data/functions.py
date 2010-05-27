@@ -5,9 +5,13 @@ import os
 
 data_py = os.path.abspath(os.path.dirname(__file__))
 data_dir = os.path.normpath(os.path.join(data_py, 'images'))
-
+som_py = os.path.abspath(os.path.dirname(__file__))
+som_dir = os.path.normpath(os.path.join(som_py, 'som'))
 def filepath(filename):
     return os.path.join(data_dir, filename)
+
+def musicapath(filename):
+    return os.path.join(som_dir, filename)
     
 def checkclick(posobj,sizeobj,posclick):
 	if posclick[0]>=posobj[0] and posclick[0]<=posobj[0]+sizeobj[0]:
