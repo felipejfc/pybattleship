@@ -30,13 +30,13 @@ class Menu(object):
 		saida_button = pygame.image.load(filepath("sair.png")) #Carrega o botao sair 
 		saida_button_vermelho = pygame.image.load(filepath("sair_s.png")) #Carrega  o botao sair vermehlo
 		clickable[ng_button] = (21,420) #poe a posicao do elemento no dict
-		clickable[sobre_button] = (336,420) #poe a posicao do botao sobre no dict
+		clickable[sobre_button] = (295,420) #poe a posicao do botao sobre no dict
 		clickable[saida_button] = (540,420)  #poe a posicao do botao saida no dict
 		pygame.mixer.music.load(musicapath("menu.ogg"))  # Carrega a musica do menu
 		pygame.mixer.music.play(-1) # TOCA A MUSICA DO MENU SEM PARAR
+		
 		while True:              #Loop do menu, que pega os eventos.
 			for evento in pygame.event.get():
-				print evento
 				menu = 1
 				no_botaong = False
 				no_botaosobre = False
