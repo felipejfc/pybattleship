@@ -1,6 +1,7 @@
 import pygame, sys, os
 from pygame.locals import *
 import menu
+import jogo
 from functions import *  #importa as funcoes do functions.py
 
 class Menu2(object):
@@ -53,8 +54,12 @@ class Menu2(object):
 						if checkclick(value,key.get_size(),evento.pos) and key==menu2bt3:
 							menu.Menu(screen)
 							menu__ = 1
+						if checkclick(value,key.get_size(),evento.pos) and key==menu2bt1:
+							jogo.Jogo(screen)
+							menu__ = 3
 			if menu__<>2:
 				break
+			
 			self.screen.blit(menu2img, (222, 140))
 			if bt1:
 				self.screen.blit(menu2bt1_r, (270, 230))
