@@ -1,6 +1,7 @@
 import pygame, sys, os
 from pygame.locals import *
 import menu2
+import menu_sobre
 from functions import *  #importa as funcoes do functions.py
 
 class Menu(object):
@@ -49,10 +50,15 @@ class Menu(object):
 							if checkclick(value,key.get_size(),evento.pos) and key==botao_novojogo:
 								menu2.Menu2(screen)
 								menu = 2
+							if checkclick(value,key.get_size(),evento.pos) and key==botao_sobre:
+								menu_sobre.Menu_sobre(screen)
+								menu = 3
 							if checkclick(value,key.get_size(),evento.pos) and key==botao_sair:
 								exit() # SAIR DO JOGO SE CLICAR NO BOTAO SAIR
 								
 			if menu == 2: # Sair do loop se clicar no botao novo jogo
+				break
+			if menu == 3: # Sair do loop se clicar no botao sobre
 				break
 			if botao_novojogo_pressionado == True:
 				self.screen.blit(botao_novojogo_vermelho, (21, 420))
