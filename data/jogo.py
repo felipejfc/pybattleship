@@ -29,7 +29,6 @@ class Jogo(object):
 
 				if barco_selecionado:
 					if evento.type == pygame.MOUSEBUTTONDOWN:
-						print evento.pos, list(evento.pos)  # test
 						mouse_pos = list(evento.pos)
 						image_rect = start_rect.move(mouse_pos)
 						self.screen.blit(campo, (0, 0))
