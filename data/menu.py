@@ -21,8 +21,8 @@ class Menu(object):
 		dicionario_elementos_clicaveis[botao_novojogo] = (21,420) #poe a posicao do elemento no dict
 		dicionario_elementos_clicaveis[botao_sobre] = (295,420) #poe a posicao do botao sobre no dict
 		dicionario_elementos_clicaveis[botao_sair] = (540,420)  #poe a posicao do botao saida no dict
-		pygame.mixer.music.load(musicapath("menu.ogg"))  # Carrega a musica do menu
-		pygame.mixer.music.play(-1) # TOCA A MUSICA DO MENU SEM PARAR
+		#pygame.mixer.music.load(musicapath("menu.ogg"))  # Carrega a musica do menu
+		#pygame.mixer.music.play(-1) # TOCA A MUSICA DO MENU SEM PARAR
 		menu = 1
 		botao_novojogo_pressionado = False
 		botao_sobre_pressionado = False
