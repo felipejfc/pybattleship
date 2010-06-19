@@ -19,6 +19,7 @@ class Jogo(object):
 		barco_teste = pygame.image.load(filepath("barco.png"));
 		self.screen.blit(barco_teste, (60, 390))
 		clickable[barco_teste] = (60,390) #poe a posicao do elemento no dict de elementos clicaveis
+		#pygame.mixer.music.stop()
 
 #Mapa da tela
 #============================		
@@ -60,8 +61,14 @@ class Jogo(object):
 						if quadrado_clicado!=None:
 							if matriz_jogo[quadrado_clicado[0]][quadrado_clicado[1]] > 0:
 								self.screen.blit(imagem_acertou, (matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][0]-1,matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][1]-1))
+								pygame.mixer.music.load(musicapath("explosao.ogg"))  # Carrega som da bomba
+								pygame.mixer.music.play()
+								pygame.mixer.music.queue(musicapath("menu.ogg"))
 								pygame.display.update()
 							if matriz_jogo[quadrado_clicado[0]][quadrado_clicado[1]] <= 0:
 								self.screen.blit(imagem_nada, (matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][0]-1,matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][1]-1))
+								pygame.mixer.music.load(musicapath("agua.ogg"))  # Carrega som da agua
+								pygame.mixer.music.queue(musicapath("menu.ogg"))
+								pygame.mixer.music.play()
 								pygame.display.update()
 					#=======================================	
