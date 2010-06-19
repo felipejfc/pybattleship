@@ -47,6 +47,7 @@ def verifica_quadrado_clicado(matriz_tela,evento):
 def cria_matriz_de_barcos():
 	#cria a matriz 10x10
 	matriz = []
+	numero_barco = 1
 	for i in range(10):
 		matriz.append([0,0,0,0,0,0,0,0,0,0])
 	#cria barco de 4 pedacos=======================
@@ -60,42 +61,43 @@ def cria_matriz_de_barcos():
 		if deitado:
 			if x>0:
 				if y>0:
-					matriz[x-1][y-1] = -1
+					matriz[x-1][y-1] = -numero_barco
 				if y<9:
-					matriz[x-1][y+1] = -1
-				matriz[x-1][y] = -1
+					matriz[x-1][y+1] = -numero_barco
+				matriz[x-1][y] = -numero_barco
 			if x<6:
 				if y>0:
-					matriz[x+4][y-1] = -1
+					matriz[x+4][y-1] = -numero_barco
 				if y<9:
-					matriz[x+4][y+1] = -1
-				matriz[x+4][y] = -1
+					matriz[x+4][y+1] = -numero_barco
+				matriz[x+4][y] = -numero_barco
 			for i in range(x,x+4):
-				matriz[i][y]=4
+				matriz[i][y]=numero_barco
 				if y>0:
-					matriz[i][y-1] = -1
+					matriz[i][y-1] = -numero_barco
 				if y<9:
-					matriz[i][y+1] = -1
+					matriz[i][y+1] = -numero_barco
 		else:
 			if y>0:
 				if x>0:
-					matriz[x-1][y-1] = -1
+					matriz[x-1][y-1] = -numero_barco
 				if x<9:
-					matriz[x+1][y-1] = -1
-				matriz[x][y-1] = -1
+					matriz[x+1][y-1] = -numero_barco
+				matriz[x][y-1] = -numero_barco
 			if y<6:
 				if x>0:
-					matriz[x-1][y+4] = -1
+					matriz[x-1][y+4] = -numero_barco
 				if x<9:
-					matriz[x+1][y+4] = -1
-				matriz[x][y+4] = -1
+					matriz[x+1][y+4] = -numero_barco
+				matriz[x][y+4] = -numero_barco
 			for i in range(y,y+4):
-				matriz[x][i]=4		
+				matriz[x][i]=numero_barco		
 				if x>0:
-					matriz[x-1][i] = -1
+					matriz[x-1][i] = -numero_barco
 				if x<9:
-					matriz[x+1][i] = -1
+					matriz[x+1][i] = -numero_barco
 		barco_criado = True
+		numero_barco+=1
 	#cria barco de 4 pedacos=======================
 	#cria 2 barcos de 3 pedacos======================
 	for i in range(2):
@@ -119,43 +121,44 @@ def cria_matriz_de_barcos():
 			if deitado:
 				if x>0:
 					if y>0:
-						matriz[x-1][y-1] = -1
+						matriz[x-1][y-1] = -numero_barco
 					if y<9:
-						matriz[x-1][y+1] = -1
-					matriz[x-1][y] = -1
+						matriz[x-1][y+1] = -numero_barco
+					matriz[x-1][y] = -numero_barco
 				if x<7:
 					if y>0:
-						matriz[x+3][y-1] = -1
+						matriz[x+3][y-1] = -numero_barco
 					if y<9:
-						matriz[x+3][y+1] = -1
-					matriz[x+3][y] = -1
+						matriz[x+3][y+1] = -numero_barco
+					matriz[x+3][y] = -numero_barco
 						
 				for i in range(x,x+3):
-					matriz[i][y]=3
+					matriz[i][y]=numero_barco
 					if y>0:
-						matriz[i][y-1] = -1
+						matriz[i][y-1] = -numero_barco
 					if y<9:
-						matriz[i][y+1] = -1
+						matriz[i][y+1] = -numero_barco
 					
 			else:
 				if y>0:
 					if x>0:
-						matriz[x-1][y-1] = -1
+						matriz[x-1][y-1] = -numero_barco
 					if x<9:
-						matriz[x+1][y-1] = -1
-					matriz[x][y-1] = -1
+						matriz[x+1][y-1] = -numero_barco
+					matriz[x][y-1] = -numero_barco
 				if y<7:
 					if x>0:
-						matriz[x-1][y+3] = -1
+						matriz[x-1][y+3] = -numero_barco
 					if x<9:
-						matriz[x+1][y+3] = -1
-					matriz[x][y+3] = -1
+						matriz[x+1][y+3] = -numero_barco
+					matriz[x][y+3] = -numero_barco
 				for i in range(y,y+3):
-					matriz[x][i]=3	
+					matriz[x][i]=numero_barco	
 					if x>0:
-						matriz[x-1][i] = -1
+						matriz[x-1][i] = -numero_barco
 					if x<9:
-						matriz[x+1][i] = -1
+						matriz[x+1][i] = -numero_barco
+			numero_barco+=1
 			barco_criado = True
 		#cria barco de 3 pedacos=======================
 		#cria 3 barcos de 2 pedacos======================
@@ -179,44 +182,45 @@ def cria_matriz_de_barcos():
 			if deitado:
 				if x>0:
 					if y>0:
-						matriz[x-1][y-1] = -1
+						matriz[x-1][y-1] = -numero_barco
 					if y<9:
-						matriz[x-1][y+1] = -1
-					matriz[x-1][y] = -1
+						matriz[x-1][y+1] = -numero_barco
+					matriz[x-1][y] = -numero_barco
 				if x<8:
 					if y>0:
-						matriz[x+2][y-1] = -1
+						matriz[x+2][y-1] = -numero_barco
 					if y<9:
-						matriz[x+2][y+1] = -1
-					matriz[x+2][y] = -1
+						matriz[x+2][y+1] = -numero_barco
+					matriz[x+2][y] = -numero_barco
 						
 				for i in range(x,x+2):
-					matriz[i][y]=2
+					matriz[i][y]=numero_barco
 					if y>0:
-						matriz[i][y-1] = -1
+						matriz[i][y-1] = -numero_barco
 					if y<9:
-						matriz[i][y+1] = -1
+						matriz[i][y+1] = -numero_barco
 				
 			else:
 				if y>0:
 					if x>0:
-						matriz[x-1][y-1] = -1
+						matriz[x-1][y-1] = -numero_barco
 					if x<9:
-						matriz[x+1][y-1] = -1
-					matriz[x][y-1] = -1
+						matriz[x+1][y-1] = -numero_barco
+					matriz[x][y-1] = -numero_barco
 				if y<8:
 					if x>0:
-						matriz[x-1][y+2] = -1
+						matriz[x-1][y+2] = -numero_barco
 					if x<9:
-						matriz[x+1][y+2] = -1
-					matriz[x][y+2] = -1
+						matriz[x+1][y+2] = -numero_barco
+					matriz[x][y+2] = -numero_barco
 				for i in range(y,y+2):
-					matriz[x][i]=2	
+					matriz[x][i]=numero_barco	
 					if x>0:
-						matriz[x-1][i] = -1
+						matriz[x-1][i] = -numero_barco
 					if x<9:
-						matriz[x+1][i] = -1			
+						matriz[x+1][i] = -numero_barco			
 			barco_criado = True
+			numero_barco+=1
 		#cria 3 barcos de 2 pedacos======================
 		#cria 4 barcos de 1 pedacos======================
 	for i in range(4):
@@ -233,23 +237,24 @@ def cria_matriz_de_barcos():
 
 			if x>0:
 				if y>0:
-					matriz[x-1][y-1] = -1
+					matriz[x-1][y-1] = -numero_barco
 				if y<9:
-					matriz[x-1][y+1] = -1
-				matriz[x-1][y] = -1
+					matriz[x-1][y+1] = -numero_barco
+				matriz[x-1][y] = -numero_barco
 			if x<9:
 				if y>0:
-					matriz[x+1][y-1] = -1
+					matriz[x+1][y-1] = -numero_barco
 				if y<9:
-					matriz[x+1][y+1] = -1
-				matriz[x+1][y] = -1
+					matriz[x+1][y+1] = -numero_barco
+				matriz[x+1][y] = -numero_barco
 				
 			if y>0:
-				matriz[x][y-1] = -1
+				matriz[x][y-1] = -numero_barco
 			if y<9:
-				matriz[x][y+1] = -1
+				matriz[x][y+1] = -numero_barco
 											
-			matriz[x][y]=1
+			matriz[x][y]=numero_barco
 			barco_criado = True
+			numero_barco+=1
 		#cria 4 barcos de 1 pedacos======================	
 	return matriz
