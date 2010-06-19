@@ -32,6 +32,7 @@ class Jogo(object):
 		time = pygame.time.Clock()
 		time.tick(60)
 		imagem_acertou = pygame.image.load(filepath("hitten.png"));
+		imagem_nada = pygame.image.load(filepath("nada.png"));
 		while True:
 			for evento in pygame.event.get():	
 				if evento.type == pygame.QUIT:
@@ -58,8 +59,9 @@ class Jogo(object):
 						quadrado_clicado = verifica_quadrado_clicado(matriz_tela,evento)
 						if quadrado_clicado!=None:
 							if matriz_jogo[quadrado_clicado[0]][quadrado_clicado[1]] > 0:
-								self.screen.blit(imagem_acertou, (matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][0],matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][1]))
+								self.screen.blit(imagem_acertou, (matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][0]-1,matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][1]-1))
 								pygame.display.update()
-							if matriz_jogo[quadrado_clicado[0]][quadrado_clicado[1]] < 0:
-								print "Acertou uma zona nula!"
+							if matriz_jogo[quadrado_clicado[0]][quadrado_clicado[1]] <= 0:
+								self.screen.blit(imagem_nada, (matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][0]-1,matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][1]-1))
+								pygame.display.update()
 					#=======================================	
