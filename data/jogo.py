@@ -31,12 +31,11 @@ class Jogo(object):
 		pygame.display.flip()
 		time = pygame.time.Clock()
 		time.tick(60)
-		
+		imagem_acertou = pygame.image.load(filepath("hitten.png"));
 		while True:
 			for evento in pygame.event.get():	
 				if evento.type == pygame.QUIT:
 					exit()
-
 				if barco_selecionado:
 					while not evento.type == MOUSEBUTTONUP:
 						for evento in pygame.event.get():
@@ -58,8 +57,9 @@ class Jogo(object):
 					#=======================================	
 						quadrado_clicado = verifica_quadrado_clicado(matriz_tela,evento)
 						if quadrado_clicado!=None:
-							if matriz_jogo[quadrado_clicado[0]-1][quadrado_clicado[1]-1] > 0:
-								print "Acertou um barco!"
-							if matriz_jogo[quadrado_clicado[0]-1][quadrado_clicado[1]-1] < 0:
+							if matriz_jogo[quadrado_clicado[0]][quadrado_clicado[1]] > 0:
+								self.screen.blit(imagem_acertou, (matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][0],matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][1]))
+								pygame.display.update()
+							if matriz_jogo[quadrado_clicado[0]][quadrado_clicado[1]] < 0:
 								print "Acertou uma zona nula!"
 					#=======================================	

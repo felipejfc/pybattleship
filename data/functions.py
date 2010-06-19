@@ -23,22 +23,26 @@ def checkclick(posicao_objeto,tamanho_objeto,posicao_click):
 
 
 def cria_mapa(xtela, ytela):
-	matriz_tela = {}
+	#matriz_tela = {}
+	matriz_tela = []
+	for i in range(10):
+		matriz_tela.append([0,0,0,0,0,0,0,0,0,0])
 	x_tela = xtela
-	for x in range(1,11):
+	for x in range(10):
 		y_tela = ytela
-		for y in range(1,11):
-			matriz_tela[(x,y)] = (x_tela,y_tela)
+		for y in range(10):
+			matriz_tela[x][y] = (x_tela,y_tela)
 			y_tela+=30
 		x_tela += 30
 			
 	return matriz_tela
 	
 def verifica_quadrado_clicado(matriz_tela,evento):
-	for chave,valor in matriz_tela.items():
-		if evento.pos[0] >= valor[0] and evento.pos[0]<=valor[0]+30:
-			if evento.pos[1] >= valor[1] and evento.pos[1]<=valor[1]+30:
-				return chave	
+	for i in range(10):
+		for j in range(10):
+			if evento.pos[0] >= matriz_tela[i][j][0] and evento.pos[0]<=matriz_tela[i][j][0]+30:
+				if evento.pos[1] >= matriz_tela[i][j][1] and evento.pos[1]<=matriz_tela[i][j][1]+30:
+					return (i,j)	
 
 def cria_matriz_de_barcos():
 	#cria a matriz 10x10
