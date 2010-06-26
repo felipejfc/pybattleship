@@ -17,15 +17,17 @@ class Jogo(object):
 		self.screen.blit(campo, (0, 0))
 
 		barco_teste = pygame.image.load(filepath("barco.png"));
-		self.screen.blit(barco_teste, (60, 390))
+		#self.screen.blit(barco_teste, (60, 390))
 		clickable[barco_teste] = (60,390) #poe a posicao do elemento no dict de elementos clicaveis
 		#pygame.mixer.music.stop()
 
 #Mapa da tela
 #============================		
-		matriz_tela = cria_mapa(330, 72)
-		matriz_jogo = cria_matriz_de_barcos()
-		print matriz_jogo
+		matriz_tela_com = cria_mapa(330, 72)
+		matriz_jogo_com = cria_matriz_de_barcos()
+		matriz_tela_player = cria_mapa(10,72)
+		matriz_jogo_player = cria_matriz_de_barcos()
+		#print matriz_jogo_com
 #============================
 		start_rect = barco_teste.get_rect()
 		image_rect = start_rect
@@ -38,6 +40,7 @@ class Jogo(object):
 			for evento in pygame.event.get():	
 				if evento.type == pygame.QUIT:
 					exit()
+				#print evento
 				if barco_selecionado:
 					while not evento.type == MOUSEBUTTONUP:
 						for evento in pygame.event.get():
@@ -57,18 +60,42 @@ class Jogo(object):
 								
 					#verificar qual quadrado o usuario clicou
 					#=======================================	
-						quadrado_clicado = verifica_quadrado_clicado(matriz_tela,evento)
+						quadrado_clicado = verifica_quadrado_clicado(matriz_tela_com,evento)
 						if quadrado_clicado!=None:
-							if matriz_jogo[quadrado_clicado[0]][quadrado_clicado[1]] > 0:
-								self.screen.blit(imagem_acertou, (matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][0]-1,matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][1]-1))
-								pygame.mixer.music.load(musicapath("explosao.ogg"))  # Carrega som da bomba
-								pygame.mixer.music.play()
-								pygame.mixer.music.queue(musicapath("menu.ogg"))
+							if matriz_jogo_com[quadrado_clicado[0]][quadrado_clicado[1]] == 11:
+								continue
+							if matriz_jogo_com[quadrado_clicado[0]][quadrado_clicado[1]] > 0:
+								self.screen.blit(imagem_acertou, (matriz_tela_com[quadrado_clicado[0]][quadrado_clicado[1]][0]-1,matriz_tela_com[quadrado_clicado[0]][quadrado_clicado[1]][1]-1))
+								#pygame.mixer.music.load(musicapath("explosao.ogg"))  # Carrega som da bomba
+								#pygame.mixer.music.play()
+								#pygame.mixer.music.queue(musicapath("menu.ogg"))
 								pygame.display.update()
-							if matriz_jogo[quadrado_clicado[0]][quadrado_clicado[1]] <= 0:
-								self.screen.blit(imagem_nada, (matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][0]-1,matriz_tela[quadrado_clicado[0]][quadrado_clicado[1]][1]-1))
+								matriz_jogo_com[quadrado_clicado[0]][quadrado_clicado[1]] = 11
+								tiro = tiro_aleatorio(matriz_jogo_player)
+							
+								if matriz_jogo_player[tiro[0]][tiro[1]] > 0 and matriz_jogo_player[tiro[0]][tiro[1]] < 11:
+									self.screen.blit(imagem_acertou, (matriz_tela_player[tiro[0]][tiro[1]][0]-1,matriz_tela_player[tiro[0]][tiro[1]][1]-1))
+									matriz_jogo_player[tiro[0]][tiro[1]] = 11
+								else:
+									self.screen.blit(imagem_nada, (matriz_tela_player[tiro[0]][tiro[1]][0]-1,matriz_tela_player[tiro[0]][tiro[1]][1]-1))
+									matriz_jogo_player[tiro[0]][tiro[1]] = 11									
+								pygame.display.update()
+							
+							if matriz_jogo_com[quadrado_clicado[0]][quadrado_clicado[1]] <= 0:
+								self.screen.blit(imagem_nada, (matriz_tela_com[quadrado_clicado[0]][quadrado_clicado[1]][0]-1,matriz_tela_com[quadrado_clicado[0]][quadrado_clicado[1]][1]-1))
 								pygame.mixer.music.load(musicapath("agua.ogg"))  # Carrega som da agua
 								pygame.mixer.music.queue(musicapath("menu.ogg"))
 								pygame.mixer.music.play()
+								pygame.display.update()
+								matriz_jogo_com[quadrado_clicado[0]][quadrado_clicado[1]] = 11
+								tiro = tiro_aleatorio(matriz_jogo_player)
+							
+								if matriz_jogo_player[tiro[0]][tiro[1]] <= 0:
+									self.screen.blit(imagem_nada, (matriz_tela_player[tiro[0]][tiro[1]][0]-1,matriz_tela_player[tiro[0]][tiro[1]][1]-1))
+									matriz_jogo_player[tiro[0]][tiro[1]] = 11
+								
+								elif matriz_jogo_player[tiro[0]][tiro[1]] > 0 and matriz_jogo_player[tiro[0]][tiro[1]] < 11:
+									self.screen.blit(imagem_acertou, (matriz_tela_player[tiro[0]][tiro[1]][0]-1,matriz_tela_player[tiro[0]][tiro[1]][1]-1))
+									matriz_jogo_player[tiro[0]][tiro[1]] = 11
 								pygame.display.update()
 					#=======================================	

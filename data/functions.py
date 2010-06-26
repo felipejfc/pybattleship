@@ -44,6 +44,15 @@ def verifica_quadrado_clicado(matriz_tela,evento):
 				if evento.pos[1] >= matriz_tela[i][j][1] and evento.pos[1]<=matriz_tela[i][j][1]+30:
 					return (i,j)	
 
+def tiro_aleatorio(matriz):
+	atirou = False
+	while not atirou:
+		x = random.randint(0,9)
+		y = random.randint(0,9)
+		if matriz[x][y]<11:
+			atirou = True
+	return (x,y)
+
 def cria_matriz_de_barcos():
 	#cria a matriz 10x10
 	matriz = []
