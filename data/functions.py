@@ -43,6 +43,15 @@ def verifica_quadrado_clicado(matriz_tela,evento):
 			if evento.pos[0] >= matriz_tela[i][j][0] and evento.pos[0]<=matriz_tela[i][j][0]+30:
 				if evento.pos[1] >= matriz_tela[i][j][1] and evento.pos[1]<=matriz_tela[i][j][1]+30:
 					return (i,j)	
+def cria_tempo_cpu():
+    tempo = random.randint(2000,4000) #cria um numero para ser usado no tempo entre 2s e 4s
+    return tempo
+
+def verifica_ganhador(tiro_cpu,tiro_player):
+    if tiro_cpu == 20:
+        return 'cpu'
+    if tiro_player == 20:
+        return 'player'
 
 def tiro_aleatorio(matriz):
 	atirou = False

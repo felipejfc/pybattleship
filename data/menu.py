@@ -27,7 +27,8 @@ class Menu(object):
 		botao_novojogo_pressionado = False
 		botao_sobre_pressionado = False
 		botao_sair_pressionado = False
-		while True:              #Loop do menu, que pega os eventos.
+
+                while True:              #Loop do menu, que pega os eventos.
 			for evento in pygame.event.get():
 				botao_novojogo_pressionado = False
 				botao_sobre_pressionado = False

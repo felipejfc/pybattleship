@@ -34,10 +34,18 @@ class Jogo(object):
 		pygame.display.flip()
 		time = pygame.time.Clock()
 		time.tick(60)
-		imagem_acertou = pygame.image.load(filepath("hitten.png"));
+
+                imagem_acertou = pygame.image.load(filepath("hitten.png"));
 		imagem_nada = pygame.image.load(filepath("nada.png"));
+
+                imagem_ganhador_cpu = pygame.image.load(filepath("perdeu.png"))
+                imagem_ganhador_jogador = pygame.image.load(filepath("ganhou.png"))
+
+                contador_tiros_cpu = 0
+                contador_tiros_player = 0
 		while True:
-			for evento in pygame.event.get():	
+			for evento in pygame.event.get():
+                                print evento
 				if evento.type == pygame.QUIT:
 					exit()
 				#print evento
@@ -71,12 +79,18 @@ class Jogo(object):
 								#pygame.mixer.music.queue(musicapath("menu.ogg"))
 								pygame.display.update()
 								matriz_jogo_com[quadrado_clicado[0]][quadrado_clicado[1]] = 11
+                                                                contador_tiros_player +=1
 								tiro = tiro_aleatorio(matriz_jogo_player)
 							
 								if matriz_jogo_player[tiro[0]][tiro[1]] > 0 and matriz_jogo_player[tiro[0]][tiro[1]] < 11:
-									self.screen.blit(imagem_acertou, (matriz_tela_player[tiro[0]][tiro[1]][0]-1,matriz_tela_player[tiro[0]][tiro[1]][1]-1))
+									teempo = cria_tempo_cpu()
+                                                                        pygame.time.delay(teempo)
+                                                                        self.screen.blit(imagem_acertou, (matriz_tela_player[tiro[0]][tiro[1]][0]-1,matriz_tela_player[tiro[0]][tiro[1]][1]-1))
 									matriz_jogo_player[tiro[0]][tiro[1]] = 11
+                                                                        contador_tiros_cpu += 1
 								else:
+                                                                        teempo = cria_tempo_cpu()
+                                                                        pygame.time.delay(teempo)
 									self.screen.blit(imagem_nada, (matriz_tela_player[tiro[0]][tiro[1]][0]-1,matriz_tela_player[tiro[0]][tiro[1]][1]-1))
 									matriz_jogo_player[tiro[0]][tiro[1]] = 11									
 								pygame.display.update()
@@ -91,11 +105,24 @@ class Jogo(object):
 								tiro = tiro_aleatorio(matriz_jogo_player)
 							
 								if matriz_jogo_player[tiro[0]][tiro[1]] <= 0:
+                                                                        teempo = cria_tempo_cpu()
+                                                                        pygame.time.delay(teempo)
 									self.screen.blit(imagem_nada, (matriz_tela_player[tiro[0]][tiro[1]][0]-1,matriz_tela_player[tiro[0]][tiro[1]][1]-1))
 									matriz_jogo_player[tiro[0]][tiro[1]] = 11
 								
 								elif matriz_jogo_player[tiro[0]][tiro[1]] > 0 and matriz_jogo_player[tiro[0]][tiro[1]] < 11:
+                                                                        teempo = cria_tempo_cpu()
+                                                                        pygame.time.delay(teempo)
 									self.screen.blit(imagem_acertou, (matriz_tela_player[tiro[0]][tiro[1]][0]-1,matriz_tela_player[tiro[0]][tiro[1]][1]-1))
 									matriz_jogo_player[tiro[0]][tiro[1]] = 11
+                                                                        contador_tiros_cpu += 1
+                                                                        print contador_tiros_cpu
 								pygame.display.update()
+
+
+                                                        if verifica_ganhador(contador_tiros_cpu,contador_tiros_player) == 'cpu':
+                                                            self.screen.blit(imagem_ganhador_cpu,(0, 140))
+                                                        if verifica_ganhador(contador_tiros_cpu,contador_tiros_player) == 'player':
+                                                            self.screen.blit(imagem_ganhador_jogador,(0, 140))
+
 					#=======================================	
