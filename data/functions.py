@@ -1,7 +1,7 @@
 import pygame, sys, os
 from pygame.locals import *
 import random
-
+import thread
 import os
 
 data_py = os.path.abspath(os.path.dirname(__file__))
@@ -44,6 +44,16 @@ def verifica_quadrado_clicado(matriz_tela,evento):
 				if evento.pos[1] >= matriz_tela[i][j][1] and evento.pos[1]<=matriz_tela[i][j][1]+30:
 					return (i,j)
 
+
+#def conectado(con, cliente):
+ #   print 'Conectado por', cliente
+  #  while True:
+   #     msg = con.recv(1024)
+    #    if not msg: break
+     #       print cliente, msg
+    #print 'Finalizando conexao do cliente', cliente
+    #con.close()
+    #thread.exit()
 
 def cria_tempo_cpu():
     tempo = random.randint(2000,4000) #cria um numero para ser usado no tempo entre 2s e 4s
