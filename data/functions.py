@@ -42,7 +42,9 @@ def verifica_quadrado_clicado(matriz_tela,evento):
 		for j in range(10):
 			if evento.pos[0] >= matriz_tela[i][j][0] and evento.pos[0]<=matriz_tela[i][j][0]+30:
 				if evento.pos[1] >= matriz_tela[i][j][1] and evento.pos[1]<=matriz_tela[i][j][1]+30:
-					return (i,j)	
+					return (i,j)
+
+
 def cria_tempo_cpu():
     tempo = random.randint(2000,4000) #cria um numero para ser usado no tempo entre 2s e 4s
     return tempo
